@@ -238,7 +238,7 @@
             let imgSrc = card.querySelector("img").src;
             // Take only the ./img/~ path
             imgSrc = imgSrc.split("/");
-            imgSrc.splice(0, 3);
+            imgSrc.splice(0, 4);
             imgSrc = imgSrc.join("/");
             // Save that path to local storage
             localStorage.setItem("imageSrc", imgSrc);
