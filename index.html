@@ -84,7 +84,9 @@
         <h2>Editor Picks</h2>
         <div class="articles-container">
           <article class="card">
-            <img src="img/articles/ent1.jpg" alt="" />
+            <a href="article.html">
+              <img src="./img/articles/ent1.jpg" alt="" />
+            </a>
             <div>
               <div class="category category-ent">Entertainment</div>
               <h3>
@@ -109,7 +111,9 @@
             </p>
           </article>
           <article class="card">
-            <img src="img/articles/tech1.jpg" alt="" />
+            <a href="article.html">
+              <img src="img/articles/tech1.jpg" alt="" />
+            </a>
             <div class="category category-tech">Technology</div>
             <h3>
               <a href="article.html">Lorem ipsum dolor sit amet</a>
@@ -130,10 +134,14 @@
               quam eius ducimus optio veniam sit nihil beatae ea autem.
               Doloribus.
             </p>
-            <img src="img/articles/sports1.jpg" alt="" />
+            <a href="article.html">
+              <img src="img/articles/sports1.jpg" alt="" />
+            </a>
           </article>
           <article class="card">
-            <img src="img/articles/tech2.jpg" alt="" />
+            <a href="article.html">
+              <img src="img/articles/tech2.jpg" alt="" />
+            </a>
             <div class="category category-tech">Technology</div>
             <h3>
               <a href="article.html">Lorem ipsum dolor sit amet</a>
@@ -167,7 +175,9 @@
                 Doloribus.
               </p>
             </div>
-            <img src="img/articles/ent2.jpg" alt="" />
+            <a href="article.html">
+              <img src="img/articles/ent2.jpg" alt="" />
+            </a>
           </article>
         </div>
       </div>
@@ -216,4 +226,32 @@
       </div>
     </footer>
   </body>
+  <script>
+    // ==== Grab img path and article's categories to dynamically change them in article.html ====
+    let cards = document.querySelectorAll(
+      "#home-articles .articles-container .card"
+    );
+    cards.forEach(card => {
+      card.addEventListener("click", e => {
+        if (e.target.tagName === "IMG" || e.target.tagName === "A") {
+          if (card.querySelector("img")) {
+            let imgSrc = card.querySelector("img").src;
+            // Take only the ./img/~ path
+            imgSrc = imgSrc.split("/");
+            imgSrc.splice(0, 3);
+            imgSrc = imgSrc.join("/");
+            // Save that path to local storage
+            localStorage.setItem("imageSrc", imgSrc);
+          } else {
+            // Just in case there's already an img path there, remove it
+            localStorage.removeItem("imageSrc");
+          }
+          let categoryClasses = card.querySelector(".category").className;
+          localStorage.setItem("articleCategories", categoryClasses);
+          let categoryName = card.querySelector(".category").textContent;
+          localStorage.setItem("categoryName", categoryName);
+        }
+      });
+    });
+  </script>
 </html>

@@ -179,4 +179,25 @@
       </div>
     </footer>
   </body>
+  <script>
+    // === Change the article's image and category depending on the article that was clicked in Home ===
+    // Change img if there is one
+    if (localStorage.getItem("imageSrc")) {
+      document.querySelector(
+        "#article .page-container .card img"
+      ).src = localStorage.getItem("imageSrc");
+    } else {
+      // Remove default image
+      document.querySelector("#article .page-container .card img").remove();
+    }
+    // -- Change category --
+    // Style (classes)
+    document.querySelector(
+      "#article .page-container .card .meta .category"
+    ).className = localStorage.getItem("articleCategories");
+    // Inner text
+    document.querySelector(
+      "#article .page-container .card .meta .category"
+    ).textContent = localStorage.getItem("categoryName");
+  </script>
 </html>
